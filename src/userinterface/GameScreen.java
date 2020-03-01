@@ -83,7 +83,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener{
 			Font fontTitle = new Font ("Courier New", 1, 30);							
 			g.setFont (fontTitle);											
 			g.setColor(Color.DARK_GRAY);
-			g.drawString("#notmydownasour", 150, 120);									// draw game tile
+			g.drawString("#notmydownasaur", 150, 120);									// draw game tile
 			Font fontSubtitle = new Font ("Courier New", 1, 15);							
 			g.setFont (fontSubtitle);											
 			g.setColor(Color.DARK_GRAY);
