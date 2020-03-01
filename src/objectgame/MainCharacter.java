@@ -24,6 +24,7 @@ public class MainCharacter {
 		characterRun = new Animation(200);									// instansiate new characterRun object and pass in 200ms as deltatime for leg moving effect
 		characterRun.addFrame(Resource.getResourceImage("data/main-character1.png"));
 		characterRun.addFrame(Resource.getResourceImage("data/main-character2.png"));
+//		characterRun.addFrame(Resource.getResourceImage("data/stephy2.png"));
 		rect = new Rectangle();												// assign the character a rectangle
 	}
 	

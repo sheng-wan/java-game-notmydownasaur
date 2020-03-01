@@ -18,7 +18,7 @@ public class Cactus extends Enemy {
 		this.mainCharacter = mainCharacter;
 		cactusImage = Resource.getResourceImage("data/cactus1.png");	// get cactus image, set position and rectangle
 		posX = 200;
-		posY = 70;
+		posY = 200;
 		rect = new Rectangle();
 	}
 	

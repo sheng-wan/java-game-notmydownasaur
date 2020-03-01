@@ -7,8 +7,8 @@ public class GameWindow extends JFrame{                   // JFrame library is f
 	private GameScreen gameScreen;                        // inject the GameScreen object
 	
 	public GameWindow() {                                 // constructor
-		super("#Not My Downasour");                       // game window name
-		setSize(600, 175);                                // set window size
+		super("#notmydownasour");                       // game window name
+		setSize(600, 300);                                // set window size
 		setLocation(800, 400);                            // window startup position
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   // set close operation
 		gameScreen = new GameScreen();

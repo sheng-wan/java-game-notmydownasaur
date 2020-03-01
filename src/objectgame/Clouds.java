@@ -23,7 +23,7 @@ public class Clouds {
 		
 		cloud1 = new Cloud(); 
 		cloud1.posX = 200;
-		cloud1.posY = 30;
+		cloud1.posY = 100;
 		clouds.add(cloud1);
 		
 		cloud1 = new Cloud(); 
@@ -32,13 +32,13 @@ public class Clouds {
 		clouds.add(cloud1); 
 		
 		cloud1 = new Cloud(); 
-		cloud1.posX = 500;
+		cloud1.posX = 450;
 		cloud1.posY = 70;
 		clouds.add(cloud1);
 		
 		cloud1 = new Cloud(); 
 		cloud1.posX = 600;
-		cloud1.posY = 60;
+		cloud1.posY = 150;
 		clouds.add(cloud1);
 	}
 	

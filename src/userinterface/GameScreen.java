@@ -26,7 +26,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener{
 	public static final int GAME_OVER_STATE = 2;
 	
 	public static final float GRAVITY = 0.1f;											// for gravity and ground level
-	public static final float GROUNDY = 110;
+	public static final float GROUNDY = 235;
 	
 	private Thread thread;																// independent path for executing program, created by Java Virtual Machine
 	private MainCharacter mainCharacter;
@@ -36,16 +36,20 @@ public class GameScreen extends JPanel implements Runnable, KeyListener{
 	private int score;
 	private int gameState = GAME_INITIAL_STATE;
 	private BufferedImage imageGameOver;
+	private BufferedImage chicken;
+	private BufferedImage chickenTitle;
 
 	public GameScreen() {																// constructor method
 		thread = new Thread(this);
 		mainCharacter = new MainCharacter();
 		mainCharacter.setX(50);															// character birth location
-		mainCharacter.setY(60);
+		mainCharacter.setY(100);
 		land = new Land(this);
 		clouds = new Clouds();
 		enemiesManager = new EnemiesManager(mainCharacter, this);
 		imageGameOver = Resource.getResourceImage("data/gameover_text.png");			// render game over image
+		chicken = Resource.getResourceImage("data/chicken4.png");
+		chickenTitle = Resource.getResourceImage("data/chicken3.jpg");
 	}
 	
 	public void startGame() {															// start the thread
@@ -57,7 +61,8 @@ public class GameScreen extends JPanel implements Runnable, KeyListener{
 		while(true) {																	// basic game loop
 			try {
 				update();
-				repaint();																// repaint will call paint and redraw the rectangle
+//				repaint()
+				repaint(100000);																// repaint will call paint and redraw the rectangle
 				Thread.sleep(5);														// create delay
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -75,10 +80,15 @@ public class GameScreen extends JPanel implements Runnable, KeyListener{
 		switch(gameState) {
 		case GAME_INITIAL_STATE:														// before game starts
 			mainCharacter.draw(g);														// draw main character
-			Font myFont = new Font ("Courier New", 1, 30);							
-			g.setFont (myFont);											
+			Font fontTitle = new Font ("Courier New", 1, 30);							
+			g.setFont (fontTitle);											
 			g.setColor(Color.DARK_GRAY);
-			g.drawString("#notmydownasour", 150, 80);									// draw game tile
+			g.drawString("#notmydownasour", 150, 120);									// draw game tile
+			Font fontSubtitle = new Font ("Courier New", 1, 15);							
+			g.setFont (fontSubtitle);											
+			g.setColor(Color.DARK_GRAY);
+			g.drawString("press any key to start", 210, 160);
+			g.drawImage(chickenTitle, 500, 110, null);
 			break;
 		case GAME_PLAY_STATE:															// when playing 
 			clouds.draw(g);																// draw clouds , following order matters, from far to near
@@ -86,14 +96,15 @@ public class GameScreen extends JPanel implements Runnable, KeyListener{
 			mainCharacter.draw(g);														// draw character
 			enemiesManager.draw(g);														// draw enemies
 			g.drawString("Score " + String.valueOf(score), 500, 20);					// display score
+			g.drawImage(chicken, 400, 200, null);
 			break;
 		case GAME_OVER_STATE:															// when game over
 			clouds.draw(g);																// draw clouds
 			land.draw(g);																// draw land
 			mainCharacter.draw(g);														// draw character
 			enemiesManager.draw(g);														// draw enemies
-			g.drawImage(imageGameOver, 200, 50, null);									// draw game over image
-			g.drawString("Final Score " + String.valueOf(score), 260, 90);				// display final score
+			g.drawImage(imageGameOver, 200, 100, null);									// draw game over image
+			g.drawString("Final Score " + String.valueOf(score), 260, 140);				// display final score
 			break;
 		}
 	}
@@ -128,6 +139,8 @@ public class GameScreen extends JPanel implements Runnable, KeyListener{
 	
 	@Override
 	public void keyPressed(KeyEvent e) {												// event listener method
+		System.out.println(gameState);
+		System.out.println(GAME_INITIAL_STATE);
 		if (gameState == GAME_INITIAL_STATE) {											// press any key to start game
 			gameState = GAME_PLAY_STATE;
 		} else if (gameState == GAME_PLAY_STATE){										// while playing, press any key to jump
@@ -137,11 +150,11 @@ public class GameScreen extends JPanel implements Runnable, KeyListener{
 			score = 0;																	// score will be cleared when restart
 			gameState = GAME_PLAY_STATE;
 		}
-
 	}
 	
 	@Override
 	public void keyReleased(KeyEvent e) {
+
 	}
 	
 }
